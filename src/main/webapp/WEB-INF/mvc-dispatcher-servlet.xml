@@ -1,0 +1,77 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+		    <context:component-scan base-package="com.sk"/>
+		    <mvc:annotation-driven />
+
+	  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	        <property name="prefix" value="/WEB-INF/views/"/>
+	        <property name="suffix" value=".jsp"/>
+	  </bean>
+	    
+	  <bean id="dataSource"
+	          class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	        <property name="driverClassName" value="${driverClassName}" />
+	        <property name="url" value="${url}" />
+	        <property name="username" value="${username}" />
+	        <property name="password" value="${password}" />
+	        <property name="validationQuery" value="SELECT 1"/>
+	        <property name="testOnBorrow" value="true"/>
+	  </bean>
+	  
+      <bean id="sessionFactory"
+                class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	        <property name="dataSource" ref="dataSource" />
+	        <property name="annotatedClasses">
+	            <list>
+	                <value>com.sk.model.Patient</value>
+	            </list>
+        	</property>
+	        <property name="hibernateProperties">
+	            <props>
+	                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+	                <prop key="hibernate.show_sql">true</prop>
+	                <prop key="hibernate.hbm2ddl.auto">update</prop>
+	                <prop key="maxwait">10000</prop>
+	                <prop key="maxidle">25</prop>
+	                <prop key="minidle">5</prop>
+	                <prop key="hibernate.c3p0.min_size.min_size">5</prop>
+	                <prop key="hibernate.c3p0.max_size">100</prop>
+	                <prop key="hibernate.c3p0.timeout">300</prop>
+	                <prop key="hibernate.c3p0.max_statements">50</prop>
+	                <prop key="hibernate.c3p0.idle_test_period">60</prop>
+	                <prop key="hibernate.c3p0.acquire_increment">2</prop>
+	                
+	            </props>
+	        </property>
+	  </bean>
+	  
+	  <bean id="personDao" class="com.sk.dao.PatientDaoImp">
+<!-- 	        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" /> -->
+	  </bean>
+	  
+	  <bean id="personService" class="com.sk.services.PatientServiceImpl">
+<!-- 	        <property name="personDao" ref="personDAO"></property> -->
+	  </bean>
+	  
+    		<tx:annotation-driven transaction-manager ="transactionManager"/>
+    
+	  <bean id="dbProperties"
+	   		   class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    	<property name="location" value="classpath:db.properties" />
+	  </bean>
+
+      <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+       	    <property name="sessionFactory" ref="sessionFactory" />
+      </bean>
+      
+</beans>
