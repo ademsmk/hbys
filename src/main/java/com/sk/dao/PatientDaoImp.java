@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sk.model.Patient;
+import com.sk.model.Sehir;
 
 @Repository
 public class PatientDaoImp implements PatientDao {
@@ -61,6 +62,13 @@ public class PatientDaoImp implements PatientDao {
 		 Session session=this.sessionFactory.getCurrentSession();
 	      session.update(patient);
 		
+	}
+
+	@Override
+	public List<Sehir> getSehirList() {
+		Session session=this.sessionFactory.getCurrentSession();
+        List<Sehir> list=session.createQuery("from Sehir").list();
+        return list;
 	}
 
 

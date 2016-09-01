@@ -29,40 +29,56 @@ public class PatientController {
 		public String printWelcome(Map<String,Object> model) {
 	      
 	        
-		    Patient person=new Patient();
-	        model.put("personForm", person);
-	        model.put("listPerson", personService.getPatientList());
-
+		    Patient patient=new Patient();
+	        model.put("patientForm", patient);
+	        model.put("SehirlerListesi", personService.getSehirList());
 	     
-			return "hello";
+			return "hasta-kayit";
 		}
 		
+		@RequestMapping(value = "/kayitlihastalar",method = RequestMethod.GET)
+		public String Hastalar(Map<String,Object> model) {
+	      
 		
+	        model.put("HastaListesi", personService.getPatientList());
+	     
+			return "hastalar";
+		}
+		
+		 @RequestMapping(value = "/hastadetay")
+		    public ModelAndView HastaDetay(@RequestParam String id){
+			  	ModelAndView model = new ModelAndView("hasta-detay");
+		        model.addObject("HastaDetay", personService.getPatient(id));
+		        return model;
+		    }
+		
+
 		@RequestMapping(method = RequestMethod.POST)
-	    public String save(@ModelAttribute("personForm") Patient patient){
-		 	personService.insertData(person);
-	        return "redirect:person";
+	    public String save(@ModelAttribute("patientForm") Patient patient){
+		 	personService.insertData(patient);
+	        return "redirect:patient";
 	    }
 
 		@RequestMapping(value = "/delete",method = RequestMethod.GET)
 	    public String deleteUser(@RequestParam String id){
 			personService.deletePatient(id);
-	        return "redirect:/person";
+	        return "redirect:../patient/kayitlihastalar";
 	    }
 		
 		 @RequestMapping(value = "/edit")
 		    public ModelAndView editPerson(@RequestParam String id){
-			  	ModelAndView model = new ModelAndView("edit");
-		        Patient person = personService.getPatient(id);
-		        model.addObject("listPerson", personService.getPatientList());
-		        model.addObject("personForm", person);
+			  	ModelAndView model = new ModelAndView("hasta-edit");
+		        Patient patient = personService.getPatient(id); 
+		        model.addObject("SehirlerListesi", personService.getSehirList());
+		        model.addObject("patientForm", patient);
 		        return model;
 		    }
 		
 		 @RequestMapping(value = "/update", method = RequestMethod.POST)
-		    public String update(@ModelAttribute("personForm") Patient person) {	 
-			 personService.updatePerson(person);	        
-		        return "redirect:/person";    
+		    public String update(@ModelAttribute("patientForm") Patient patient) {	
+			 int id = patient.getDosya_no();
+			 personService.updatePatient(patient);	        
+		        return "redirect:../patient/hastadetay?id="+id;    
 		    }
 		  
 	

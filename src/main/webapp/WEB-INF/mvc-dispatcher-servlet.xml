@@ -34,6 +34,7 @@
 	        <property name="annotatedClasses">
 	            <list>
 	                <value>com.sk.model.Patient</value>
+	                <value>com.sk.model.Sehir</value>
 	            </list>
         	</property>
 	        <property name="hibernateProperties">

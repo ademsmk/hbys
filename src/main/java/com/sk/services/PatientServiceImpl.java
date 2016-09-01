@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sk.dao.PatientDao;
 import com.sk.model.Patient;
+import com.sk.model.Sehir;
 
 
 @Service
@@ -49,6 +50,12 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	public Patient getPatient(String id) {
 		return personDao.getPatient(id);
+	}
+
+	@Override
+	public List<Sehir> getSehirList() {
+		// TODO Auto-generated method stub
+		return personDao.getSehirList();
 	}
 
 
