@@ -36,8 +36,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/ContactListHibernate/patient">Hasta Ekle</a></li>
-        <li><a href="/ContactListHibernate/patient/kayitlihastalar">Hasta Listesi</a></li>
+        <li><a href="/HastaTakip/patient">Hasta Ekle</a></li>
+        <li><a href="/HastaTakip/patient/kayitlihastalar">Hasta Listesi</a></li>
       </ul>
     </div>
   </div>
