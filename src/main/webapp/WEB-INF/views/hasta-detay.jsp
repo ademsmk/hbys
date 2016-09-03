@@ -39,6 +39,7 @@
 
 	         
            <table class="table">
+           
           	  <tr class="success"><td style="width: 216px;">Dosya Numarası</td><td style="padding-left: 50px;">: ${HastaDetay.dosya_no}</td></tr>
               <tr class="success"><td style="width: 216px;">İsim Soyisim</td><td style="padding-left: 50px;">: ${HastaDetay.adisoyadi}</td></tr>
               <tr class="success"><td style="width: 216px;">TC Kimlik Numarası</td><td style="padding-left: 50px;">: ${HastaDetay.tckimlik_no}</td></tr>
@@ -53,11 +54,15 @@
               <tr class="success"><td style="width: 216px;">Medeni Hal</td><td style="padding-left: 50px;">: ${HastaDetay.medeni_hal}</td></tr>
               </table>      
                 
-  
-
+  				<a href="../patient/delete?id=${HastaDetay.dosya_no}" class="btn btn-info" role="button">Hastayı Sil</a>
+  				<a href="../patient/edit?id=${HastaDetay.dosya_no}" class="btn btn-info" role="button">Düzenle</a>
+	
        
     </c:if>
     
+    <c:if test="${empty HastaDetay}">
+    <h2>Kayıtlı Hasta Bulunamadı.</h2>
+    </c:if>
 
     
 </div>

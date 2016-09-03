@@ -38,6 +38,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/HastaTakip/patient">Hasta Ekle</a></li>
         <li><a href="/HastaTakip/patient/kayitlihastalar">Hasta Listesi</a></li>
+         <li><a href="/HastaTakip/randevu">Randevular</a></li>
       </ul>
     </div>
   </div>

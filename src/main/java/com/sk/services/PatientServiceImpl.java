@@ -15,7 +15,7 @@ import com.sk.model.Sehir;
 public class PatientServiceImpl implements PatientService {
 
 	@Autowired
-    PatientDao personDao;
+    PatientDao patientDao;
   
 //	public void setPersonDao(PersonDao personDao) {
 //		this.personDao = personDao;
@@ -26,36 +26,35 @@ public class PatientServiceImpl implements PatientService {
 	public List<Patient> getPatientList() {
 		
 		
-		return personDao.getPatientList();
+		return patientDao.getPatientList();
 	}
 
 	@Override
 	public void deletePatient(String id) {
-		personDao.delete(id);
+		patientDao.delete(id);
 		
 	}
 
 	@Override
 	public void insertData(Patient patient) {
-		personDao.insertData(patient);
+		patientDao.insertData(patient);
 		
 	}
 
 	@Override
 	public void updatePatient(Patient patient) {
-		personDao.updatePatient(patient);
+		patientDao.updatePatient(patient);
 		
 	}
 
 	@Override
 	public Patient getPatient(String id) {
-		return personDao.getPatient(id);
+		return patientDao.getPatient(id);
 	}
 
 	@Override
 	public List<Sehir> getSehirList() {
-		// TODO Auto-generated method stub
-		return personDao.getSehirList();
+		return patientDao.getSehirList();
 	}
 
 

@@ -35,6 +35,7 @@
 	            <list>
 	                <value>com.sk.model.Patient</value>
 	                <value>com.sk.model.Sehir</value>
+	                <value>com.sk.model.Randevu</value>
 	            </list>
         	</property>
 	        <property name="hibernateProperties">
@@ -56,11 +57,19 @@
 	        </property>
 	  </bean>
 	  
-	  <bean id="personDao" class="com.sk.dao.PatientDaoImp">
+	  <bean id="patientDao" class="com.sk.dao.PatientDaoImp">
 <!-- 	        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" /> -->
 	  </bean>
 	  
-	  <bean id="personService" class="com.sk.services.PatientServiceImpl">
+	   <bean id="randevuDao" class="com.sk.dao.RandevuDaoImp">
+<!-- 	        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" /> -->
+	  </bean>
+	  
+	  <bean id="patientService" class="com.sk.services.PatientServiceImpl">
+<!-- 	        <property name="personDao" ref="personDAO"></property> -->
+	  </bean>
+	  
+	  <bean id="randevuService" class="com.sk.services.RandevuServiceImp">
 <!-- 	        <property name="personDao" ref="personDAO"></property> -->
 	  </bean>
 	  

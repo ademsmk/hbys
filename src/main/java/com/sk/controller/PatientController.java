@@ -22,7 +22,7 @@ import com.sk.services.PatientService;
 public class PatientController {
 	
 		@Autowired
-	    PatientService personService;
+	    PatientService patientService;
 	
 		
 		@RequestMapping(method = RequestMethod.GET)
@@ -31,7 +31,7 @@ public class PatientController {
 	        
 		    Patient patient=new Patient();
 	        model.put("patientForm", patient);
-	        model.put("SehirlerListesi", personService.getSehirList());
+	        model.put("SehirlerListesi", patientService.getSehirList());
 	     
 			return "hasta-kayit";
 		}
@@ -40,36 +40,44 @@ public class PatientController {
 		public String Hastalar(Map<String,Object> model) {
 	      
 		
-	        model.put("HastaListesi", personService.getPatientList());
-	     
+	        model.put("HastaListesi", patientService.getPatientList());
+	        model.put("patientForm", new Patient());
 			return "hastalar";
 		}
-		
+		 
+		 @RequestMapping(value = "/search", method = RequestMethod.POST)
+		    public String deneme(@ModelAttribute("patientForm") Patient patient){
+			 	ModelAndView model = new ModelAndView("hastalar");
+			  	String id = Integer.toString(patient.getDosya_no());
+		        model.addObject("searchForm", patientService.getPatient(id));
+		        return "redirect:../patient/hastadetay?id="+id;
+		 }
+		 
 		 @RequestMapping(value = "/hastadetay")
 		    public ModelAndView HastaDetay(@RequestParam String id){
 			  	ModelAndView model = new ModelAndView("hasta-detay");
-		        model.addObject("HastaDetay", personService.getPatient(id));
+		        model.addObject("HastaDetay", patientService.getPatient(id));
 		        return model;
 		    }
 		
 
 		@RequestMapping(method = RequestMethod.POST)
 	    public String save(@ModelAttribute("patientForm") Patient patient){
-		 	personService.insertData(patient);
+			patientService.insertData(patient);
 	        return "redirect:patient";
 	    }
 
 		@RequestMapping(value = "/delete",method = RequestMethod.GET)
 	    public String deleteUser(@RequestParam String id){
-			personService.deletePatient(id);
+			patientService.deletePatient(id);
 	        return "redirect:../patient/kayitlihastalar";
 	    }
 		
 		 @RequestMapping(value = "/edit")
 		    public ModelAndView editPerson(@RequestParam String id){
 			  	ModelAndView model = new ModelAndView("hasta-edit");
-		        Patient patient = personService.getPatient(id); 
-		        model.addObject("SehirlerListesi", personService.getSehirList());
+		        Patient patient = patientService.getPatient(id); 
+		        model.addObject("SehirlerListesi", patientService.getSehirList());
 		        model.addObject("patientForm", patient);
 		        return model;
 		    }
@@ -77,7 +85,7 @@ public class PatientController {
 		 @RequestMapping(value = "/update", method = RequestMethod.POST)
 		    public String update(@ModelAttribute("patientForm") Patient patient) {	
 			 int id = patient.getDosya_no();
-			 personService.updatePatient(patient);	        
+			 patientService.updatePatient(patient);	        
 		        return "redirect:../patient/hastadetay?id="+id;    
 		    }
 		  

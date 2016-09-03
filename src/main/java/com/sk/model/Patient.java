@@ -1,11 +1,17 @@
 package com.sk.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,18 +39,34 @@ public class Patient {
 	    private String medeni_hal;
 	    private String kan_grubu;
 	    
+	    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+		@JoinTable(
+	            name="hasta_randevu",
+	            joinColumns = @JoinColumn( name="dosya_no"),
+	            inverseJoinColumns = @JoinColumn( name="randevu_no")
+	    )
+		private List<Randevu> randevular;
+	    
+	    @OneToOne
+		@JoinColumn(name="sehir_kodu")
+		private Sehir sehirler;
+	    
 	    public Sehir getSehirler() {
 			return sehirler;
 		}
 		public void setSehirler(Sehir sehirler) {
 			this.sehirler = sehirler;
 		}
-		@OneToOne
-		@JoinColumn(name="sehir_kodu")
-		private Sehir sehirler;
+		
 	    
 	    
-	    public String getMedeni_hal() {
+	    public List<Randevu> getRandevular() {
+			return randevular;
+		}
+		public void setRandevular(List<Randevu> randevular) {
+			this.randevular = randevular;
+		}
+		public String getMedeni_hal() {
 			return medeni_hal;
 		}
 		public void setMedeni_hal(String medeni_hal) {
