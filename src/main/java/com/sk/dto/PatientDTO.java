@@ -22,6 +22,8 @@ public class PatientDTO {
     private String kan_grubu;
     private List<Randevu> randevular;
     private Sehir sehirler;
+    
+    
 	public int getDosya_no() {
 		return dosya_no;
 	}

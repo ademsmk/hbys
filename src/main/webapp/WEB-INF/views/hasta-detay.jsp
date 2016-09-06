@@ -56,6 +56,7 @@
                 
   				<a href="../patient/delete?id=${HastaDetay.dosya_no}" class="btn btn-info" role="button">Hastayı Sil</a>
   				<a href="../patient/edit?id=${HastaDetay.dosya_no}" class="btn btn-info" role="button">Düzenle</a>
+  				<a href="../patient/randevular?id=${HastaDetay.dosya_no}" class="btn btn-info" role="button">Randevular</a>
 	
        
     </c:if>

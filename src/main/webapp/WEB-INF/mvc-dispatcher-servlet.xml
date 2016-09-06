@@ -36,6 +36,10 @@
 	                <value>com.sk.model.Patient</value>
 	                <value>com.sk.model.Sehir</value>
 	                <value>com.sk.model.Randevu</value>
+	                <value>com.sk.model.HastalikTipi</value>
+	                <value>com.sk.model.HastalikTipiIcerik</value>
+	                <value>com.sk.model.BilgiGirisi</value>
+	                <value>com.sk.model.Yorumlar</value>
 	            </list>
         	</property>
 	        <property name="hibernateProperties">
@@ -65,7 +69,19 @@
 <!-- 	        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" /> -->
 	  </bean>
 	  
-	  <bean id="patientService" class="com.sk.services.PatientServiceImpl">
+	    <bean id="hastaliktipiDao" class="com.sk.dao.HastalikTipiDaoImp">
+<!-- 	        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" /> -->
+	  </bean>
+	  
+	  <bean id="hastaliktipiicerikDao" class="com.sk.dao.HastalikTipiIcerikDaoImp">
+<!-- 	        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" /> -->
+	  </bean>
+	  
+	  <bean id="hastaliktipiService" class="com.sk.services.HastalikTipiServiceImp">
+<!-- 	        <property name="personDao" ref="personDAO"></property> -->
+	  </bean>
+	  
+	  <bean id="hastaliktipiicerikService" class="com.sk.services.HastalikTipiIcerikServiceImp">
 <!-- 	        <property name="personDao" ref="personDAO"></property> -->
 	  </bean>
 	  

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sk.dao.RandevuDao;
+import com.sk.model.HastalikTipi;
 import com.sk.model.Randevu;
 
 public class RandevuServiceImp implements RandevuService {
@@ -49,6 +50,12 @@ public class RandevuServiceImp implements RandevuService {
 		
 		randevuDao.addRandevu(dosya_no, randevu);
 		
+	}
+
+	@Override
+	public List<HastalikTipi> getHastalikTipi() {
+		
+		return randevuDao.getHastalikTipi();
 	}
 
 }

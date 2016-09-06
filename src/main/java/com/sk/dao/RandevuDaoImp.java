@@ -7,8 +7,12 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.sk.model.HastalikTipi;
+import com.sk.model.HastalikTipiIcerik;
 import com.sk.model.Patient;
 import com.sk.model.Randevu;
+import com.sk.model.Sehir;
 
 public class RandevuDaoImp implements RandevuDao{
 	
@@ -70,6 +74,22 @@ public class RandevuDaoImp implements RandevuDao{
 		  existingPatient.getRandevular().add(randevu);
 		  session.save(existingPatient);
 		
+	}
+
+	@Override
+	public List<HastalikTipi> getHastalikTipi() {
+		Session session=this.sessionFactory.getCurrentSession();
+        List<HastalikTipi> list=session.createQuery("from HastalikTipi").list();
+        return list;
+	}
+
+	@Override
+	public List<HastalikTipiIcerik> getHastalikTipiIcerik(int hastalik_tipi_id) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("FROM HastalikTipi as h LEFT JOIN FETCH  h.hastalik_tipi_icerik WHERE h.id="+hastalik_tipi_id);
+		HastalikTipi hastaliktipi = (HastalikTipi) query.uniqueResult();
+		return new ArrayList<HastalikTipiIcerik>(hastaliktipi.getHastalik_tipi_icerik());
 	}
 
 }

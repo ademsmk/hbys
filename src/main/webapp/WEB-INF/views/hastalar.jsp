@@ -106,7 +106,7 @@ $(document).ready(function(){
 					</td>
 					
 					 <td style="width: 118px">
-					<a href="edit?id=${hastalar.dosya_no}">Edit</a>
+					<a href="randevular?id=${hastalar.dosya_no}">Randevular</a>
 					</td>
 					
 					<td style="width: 118px">

@@ -1,5 +1,7 @@
 package com.sk.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import com.sk.dto.PatientDTO;
+import com.sk.model.HastalikTipi;
 import com.sk.model.Patient;
+import com.sk.model.Randevu;
 import com.sk.services.PatientService;
+import com.sk.services.RandevuService;
 
 @Controller
 @Transactional
@@ -23,6 +30,9 @@ public class PatientController {
 	
 		@Autowired
 	    PatientService patientService;
+		
+		@Autowired
+		RandevuService randevuService;
 	
 		
 		@RequestMapping(method = RequestMethod.GET)
@@ -32,7 +42,7 @@ public class PatientController {
 		    Patient patient=new Patient();
 	        model.put("patientForm", patient);
 	        model.put("SehirlerListesi", patientService.getSehirList());
-	     
+
 			return "hasta-kayit";
 		}
 		
@@ -89,7 +99,39 @@ public class PatientController {
 		        return "redirect:../patient/hastadetay?id="+id;    
 		    }
 		  
-	
+		 @RequestMapping(value = "/randevular")
+		    public ModelAndView ShowAuthorBooks(@RequestParam String id){
+			  	ModelAndView model = new ModelAndView("hasta-randevu");        
+		        Patient hasta = patientService.getPatient(id);
+		        List<PatientDTO> patientDTO = new ArrayList<PatientDTO>();
+
+		        PatientDTO dto = new PatientDTO();
+		        
+		    	 
+		    	 dto.setDosya_no(hasta.getDosya_no());
+		    	 dto.setAdisoyadi(hasta.getAdisoyadi());
+		    	 dto.setDogum_tarihi(hasta.getDogum_tarihi());
+		    	 dto.setDogum_yeri(hasta.getDogum_yeri());
+		    	 dto.setBaba_adi(hasta.getBaba_adi());
+		    	 dto.setAnne_adi(hasta.getAnne_adi());
+		    	 dto.setAdres(hasta.getAdres());
+		    	 dto.setTelefon_no(hasta.getTelefon_no());
+		    	 dto.setTckimlik_no(hasta.getTckimlik_no());
+		    	 dto.setCinsiyet(hasta.getCinsiyet());
+		    	 dto.setMedeni_hal(hasta.getMedeni_hal());
+		    	 dto.setKan_grubu(hasta.getKan_grubu());
+		    	 dto.setRandevular(randevuService.getRandevuList(hasta.getDosya_no()));
+		    	 dto.setSehirler(hasta.getSehirler());
+		    	 patientDTO.add(dto);
+		    	 
+		        model.addObject("hastalar", patientDTO);
+		        model.addObject("randevuForm", new Randevu());
+		        model.addObject("dosya_no",id);
+		        
+		        
+		        return model;
+		    }
+		 
 
 
 }
