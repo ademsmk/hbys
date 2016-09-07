@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.sk.model.BilgiGirisi;
 import com.sk.model.HastalikTipi;
 import com.sk.model.HastalikTipiIcerik;
+import com.sk.model.Yorumlar;
 
 public class HastalikTipiIcerikDaoImp implements HastalikTipiIcerikDao{
 	
@@ -46,6 +47,20 @@ public class HastalikTipiIcerikDaoImp implements HastalikTipiIcerikDao{
 		Query query = session.createQuery("FROM HastalikTipiIcerik as ht LEFT JOIN FETCH  ht.bilgigirisi WHERE ht.id="+icerik_id);
 		HastalikTipiIcerik icerik = (HastalikTipiIcerik) query.uniqueResult();
 		return new ArrayList<BilgiGirisi>(icerik.getBilgigirisi());
+	}
+
+	@Override
+	public BilgiGirisi getBilgiGirisi(String id) {
+		Session session = sessionFactory.getCurrentSession();
+		BilgiGirisi bilgigirisi = (BilgiGirisi) session.get(BilgiGirisi.class, new Integer(id));
+		return bilgigirisi;
+	}
+
+	@Override
+	public void YorumEkle(Yorumlar yorumlar) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(yorumlar);
+		
 	}
 
 }

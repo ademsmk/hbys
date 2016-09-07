@@ -62,31 +62,39 @@
 	  </bean>
 	  
 	  <bean id="patientDao" class="com.sk.dao.PatientDaoImp">
-<!-- 	        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" /> -->
+
 	  </bean>
 	  
 	   <bean id="randevuDao" class="com.sk.dao.RandevuDaoImp">
-<!-- 	        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" /> -->
+
 	  </bean>
 	  
 	    <bean id="hastaliktipiDao" class="com.sk.dao.HastalikTipiDaoImp">
-<!-- 	        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" /> -->
+
 	  </bean>
 	  
 	  <bean id="hastaliktipiicerikDao" class="com.sk.dao.HastalikTipiIcerikDaoImp">
-<!-- 	        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" /> -->
+
+	  </bean>
+	  
+	   <bean id="yorumlarDao" class="com.sk.dao.YorumlarDaoImp">
+
+	  </bean>
+	  
+	  <bean id="yorumlarService" class="com.sk.services.YorumlarServiceImp">
+
 	  </bean>
 	  
 	  <bean id="hastaliktipiService" class="com.sk.services.HastalikTipiServiceImp">
-<!-- 	        <property name="personDao" ref="personDAO"></property> -->
+
 	  </bean>
 	  
 	  <bean id="hastaliktipiicerikService" class="com.sk.services.HastalikTipiIcerikServiceImp">
-<!-- 	        <property name="personDao" ref="personDAO"></property> -->
+
 	  </bean>
 	  
 	  <bean id="randevuService" class="com.sk.services.RandevuServiceImp">
-<!-- 	        <property name="personDao" ref="personDAO"></property> -->
+
 	  </bean>
 	  
     		<tx:annotation-driven transaction-manager ="transactionManager"/>

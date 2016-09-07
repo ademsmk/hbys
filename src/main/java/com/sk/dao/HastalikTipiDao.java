@@ -10,6 +10,6 @@ public interface HastalikTipiDao {
 	public List<HastalikTipi> getHastalikTipi();
 	public List<HastalikTipi> getHastalikTipi(int randevu_no);
 	public HastalikTipi getHastalikTipi(String id);
-	public void addHastalikTipi(int randevu_no, HastalikTipi hastaliktipi);
+	public void addHastalikTipi(String randevu_no, HastalikTipi hastaliktipi);
 	
 }

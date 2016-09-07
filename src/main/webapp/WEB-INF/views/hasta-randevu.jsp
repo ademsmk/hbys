@@ -33,7 +33,7 @@
 <div class="container" style="border:1px solid#000; padding-bottom: 20px;">
 <div  align = center style="padding-top: 20px;">
 <c:forEach items="${hastalar}" var="hasta" >
-       <p class="bg-primary"><c:out value="${hasta.adisoyadi}" /> Muayene Sayfası </p>
+       <p class="bg-primary"><c:out value="${hasta.adisoyadi}" /> Adlı Hasta Randevu & Muayene Sayfası <br> DOSYA NUMARASI : ${hasta.dosya_no} </p>
   </c:forEach>
   
 
@@ -75,7 +75,7 @@
     <td style="width:220px"><c:out value="${randevu.randevu_saati}" /></td>
     <td><a href="../book/edit?bookid=${book.id}&authorid=${author.id}">Edit</a></td>
     <td><a href="../book/delete?bookid=${book.id}&authorid=${author.id}">Delete</a></td>
-    <td><a href="../randevu/randevudetay?id=${randevu.randevu_no}" class="btn btn-info" role="button">Randevular</a></td>
+    <td><a href="../randevu/randevudetay?id=${randevu.randevu_no}&dosya_no=${hasta.dosya_no}" class="btn btn-info" role="button">Muayene Bilgisi</a></td>
    
    </tr>
  	

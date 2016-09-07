@@ -80,7 +80,7 @@ $(document).ready(function(){
 <div  align = center style="padding-top: 20px;">
 
 <form:form action="../patient/search" id="hellojs" method="post" commandName="patientForm" class="form-inline" >
-
+<div class="form-group">Dosya Numarası</div><br/>
 <div class="form-group"><form:input style="margin-left:15px; margin-top:5px;" class="form-control col-lg-12 col-md-12 col-sm-12" id="add-email" type="text" placeholder="Doğum Yeri" value="Ara" path="dosya_no"></form:input></div><br/>
 <input class="btn btn-default" style="margin-left:15px; margin-top:5px; margin-bot:5px;" type="submit" value="Ara"  >
 </form:form>

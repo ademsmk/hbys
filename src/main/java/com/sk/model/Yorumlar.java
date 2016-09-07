@@ -3,6 +3,7 @@ package com.sk.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,9 +25,28 @@ public class Yorumlar {
 	private String yorum;
 	
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="bilgi_girisi_id")
 	private BilgiGirisi bilgigirisi;
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="randevu_no")
+	private Randevu randevu;
+
+
+	
+	
+
+
+
+	public Randevu getRandevu() {
+		return randevu;
+	}
+
+
+	public void setRandevu(Randevu randevu) {
+		this.randevu = randevu;
+	}
 
 
 	public int getId() {

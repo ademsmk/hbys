@@ -42,6 +42,7 @@
            
           	  <tr class="success"><td style="width: 216px;">Randevu Tarihi</td><td style="padding-left: 50px;">: ${RandevuDetay.randevu_tarihi}</td></tr>
               <tr class="success"><td style="width: 216px;">Randevu Saati</td><td style="padding-left: 50px;">: ${RandevuDetay.randevu_saati}</td></tr>
+              <tr class="success"><td style="width: 216px;">Dosya Numarası</td><td style="padding-left: 50px;">: ${dosya_no}</td></tr>
               
               </table>      
                
@@ -64,7 +65,7 @@
                 <tr id="${hastalik_tipi.id}">
              
                     <td id="Name" style="width: 150px" >
-                    <a href="hastaliktipidetay?hastaliktipiid=${hastalik_tipi.id}&randevu_no=${RandevuDetay.randevu_no}">${hastalik_tipi.hastalik_tipi_adi}</a>
+                    <a href="hastaliktipidetay?hastaliktipiid=${hastalik_tipi.id}&randevu_no=${RandevuDetay.randevu_no}&dosya_no=${dosya_no}">${hastalik_tipi.hastalik_tipi_adi}</a>
                     </td>
 
                 </tr>
@@ -74,27 +75,7 @@
         </table>
     </c:if>
     
-     <c:if test="${!empty hastalik_tipi_icerik}">
-        <table class="table table-bordered">
-
-	            <tr>
-	                <th>Dosya Numarası</th>
-	               
-	               
-	            </tr>
-            <c:forEach items="${hastalik_tipi_icerik}" var="hastalik_tipi_icerik" >
-                <tr id="${hastalik_tipi_icerik.id}">
-             
-                    <td id="Name" style="width: 150px" >
-                    <a href="hastaliktipidetay?hastaliktipiid=${hastalik_tipi.id}&randevu_no=${RandevuDetay.randevu_no}">${hastalik_tipi_icerik.hastalik_icerik_adi}</a>
-                    </td>
-
-                </tr>
-			</c:forEach>
-            <tr>
-            </tr>
-        </table>
-    </c:if>
+    
           
             
 </body>

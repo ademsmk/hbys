@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.sk.dao.HastalikTipiIcerikDao;
 import com.sk.model.BilgiGirisi;
 import com.sk.model.HastalikTipiIcerik;
+import com.sk.model.Yorumlar;
 
 public class HastalikTipiIcerikServiceImp implements HastalikTipiIcerikService{
 
@@ -34,6 +35,18 @@ public class HastalikTipiIcerikServiceImp implements HastalikTipiIcerikService{
 	public List<BilgiGirisi> getBilgiGirisi(int icerik_id) {
 		// TODO Auto-generated method stub
 		return hastaliktipiicerikDao.getBilgiGirisi(icerik_id);
+	}
+
+	@Override
+	public BilgiGirisi getBilgiGirisi(String id) {
+		// TODO Auto-generated method stub
+		return hastaliktipiicerikDao.getBilgiGirisi(id);
+	}
+
+	@Override
+	public void YorumEkle(Yorumlar yorumlar) {
+	
+		hastaliktipiicerikDao.YorumEkle(yorumlar);
 	}
 
 }

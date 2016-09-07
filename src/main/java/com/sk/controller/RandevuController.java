@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sk.dto.HastalikTipiDTO;
 import com.sk.dto.HastalikTipiIcerikDTO;
 import com.sk.dto.PatientDTO;
-import com.sk.dto.RandevuDTO;
 import com.sk.model.HastalikTipi;
 import com.sk.model.HastalikTipiIcerik;
 import com.sk.model.Patient;
@@ -25,6 +24,7 @@ import com.sk.services.HastalikTipiIcerikService;
 import com.sk.services.HastalikTipiService;
 import com.sk.services.PatientService;
 import com.sk.services.RandevuService;
+import com.sk.services.YorumlarService;
 
 @Controller
 @Transactional
@@ -42,6 +42,9 @@ public class RandevuController {
 	
 	@Autowired
 	HastalikTipiIcerikService hastaliktipiicerikService;
+	
+	@Autowired
+	YorumlarService yorumlarService;
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -91,10 +94,11 @@ public class RandevuController {
     }
 	
 	 @RequestMapping(value = "/randevudetay")
-	    public ModelAndView HastaDetay(@RequestParam String id){
+	    public ModelAndView HastaDetay(@RequestParam("id") String randevu_no, @RequestParam("dosya_no") String dosya_no){
 		  	ModelAndView model = new ModelAndView("randevu-detay");
-	        model.addObject("RandevuDetay", randevuService.getRandevu(id));
+	        model.addObject("RandevuDetay", randevuService.getRandevu(randevu_no));
 	        model.addObject("hastalik_tipi", randevuService.getHastalikTipi());
+	        model.addObject("dosya_no", dosya_no);
 	        
 
 	        return model;
@@ -102,7 +106,7 @@ public class RandevuController {
 	 
 	 @RequestMapping(value = "/hastaliktipidetay")
 	 
-	    public ModelAndView HastalikTipiDetay(@RequestParam("randevu_no") String randevu_no, @RequestParam("hastaliktipiid") String hastalik_tipi_id){
+	    public ModelAndView HastalikTipiDetay(@RequestParam("randevu_no") String randevu_no, @RequestParam("hastaliktipiid") String hastalik_tipi_id, @RequestParam("dosya_no") String dosya_no){
 		  	ModelAndView model = new ModelAndView("hastaliktipi-detay");
 	        model.addObject("RandevuDetay", randevuService.getRandevu(randevu_no));
 	        model.addObject("hastalik_tipi_icerik", hastaliktipiicerikService.getHastalikTipiIcerik(hastalik_tipi_id));
@@ -118,6 +122,7 @@ public class RandevuController {
 	        
 	        model.addObject("hastaliktipi", hastaliktipiDTO);
 	        model.addObject("hastaliktipi_id", hastalik_tipi_id);
+	        model.addObject("dosya_no", dosya_no);
  
 	        return model;
 	    }
@@ -146,16 +151,45 @@ public class RandevuController {
 	        return model;
 	    }
 	 
-		@RequestMapping(value = "/yorumekle", method = RequestMethod.POST)
-	    public String YorumEkle(@ModelAttribute("yorumlarForm") Yorumlar yorumlar, @RequestParam("randevu_no") String randevu_no, 
+		@RequestMapping(value = "/yorumeklemesayfasi")
+	    public ModelAndView YorumEkle(@RequestParam("randevu_no") String randevu_no, 
 	    		@RequestParam("hastaliktipiid") String hastalik_tipi_id, @RequestParam("icerik") String icerik_id, @RequestParam("bilgi_id") String bilgi_id ){
 			
-					return icerik_id;
+			
+			ModelAndView model = new ModelAndView("yorum-ekle-sayfasi");
+			
+			Yorumlar yorumlar = new Yorumlar();
+			model.addObject("yorumForm", yorumlar);
+			model.addObject("icerik", icerik_id);
+			model.addObject("bilgi_id", bilgi_id);
+			model.addObject("hastaliktipiid", hastalik_tipi_id);
+			model.addObject("randevu_no", randevu_no);
+			model.addObject("yorumList", yorumlarService.getYorumlarList(randevu_no));
+			model.addObject("getYorum", yorumlarService.getYorumlar(bilgi_id));
+			
+			
+			
+			
+			
+		return model;
 			
 			
 			
 	    }
 	 
+		@RequestMapping(value = "/yorumekle", method = RequestMethod.POST)
+	    public String AddSummary(@ModelAttribute("yorumForm") Yorumlar yorumlar,@RequestParam("randevu_no") String randevu_no, 
+	    		@RequestParam("hastaliktipiid") String hastalik_tipi_id, @RequestParam("icerik") String icerik_id, @RequestParam("bilgi_id") String bilgi_id  ){
+			
+			
+			yorumlar.setBilgigirisi(hastaliktipiicerikService.getBilgiGirisi(bilgi_id));
+			yorumlar.setRandevu(randevuService.getRandevu(randevu_no));
+			hastaliktipiicerikService.YorumEkle(yorumlar);
+			HastalikTipi hastaliktipi = hastaliktipiService.getHastalikTipi(hastalik_tipi_id);
+			hastaliktipiService.addHastalikTipi(randevu_no, hastaliktipi);
+			
+	        return "redirect:../randevu/yorumeklemesayfasi?hastaliktipiid="+hastalik_tipi_id+"&randevu_no="+randevu_no+"&icerik="+icerik_id+"&bilgi_id="+bilgi_id;
+	    }
 
 	
 	

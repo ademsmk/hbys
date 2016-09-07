@@ -31,7 +31,7 @@ public class HastalikTipiServiceImp implements HastalikTipiService{
 	}
 
 	@Override
-	public void addHastalikTipi(int randevu_no, HastalikTipi hastaliktipi) {
+	public void addHastalikTipi(String randevu_no, HastalikTipi hastaliktipi) {
 		
 		hastaliktipiDao.addHastalikTipi(randevu_no, hastaliktipi);
 		
