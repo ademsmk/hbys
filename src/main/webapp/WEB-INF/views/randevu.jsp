@@ -24,6 +24,8 @@
 
 <jsp:include page="../views/header.jsp" />
 	<div align="center">
+	
+
 
 
 </head>
@@ -31,6 +33,23 @@
 
 <div class="container" style="border:1px solid#000; padding-bottom: 20px;">
 <div  align = center style="padding-top: 20px;">
+
+
+
+
+
+  <form:form action="/HastaTakip/randevu/search" id="hellojs" method="post" commandName="randevuForm" class="form-inline" >
+                    	
+	                    <div class="form-group"><form:input class="form-control" id="thedate" type="date" placeholder="Randevu Tarihi" path="randevu_tarihi" /></div>     
+
+	                    <input class="btn btn-default" type="submit" value="Randevu Ara"  >
+<!-- 						<a href="#" class="btn btn-info" role="button">Link Button</a> -->
+                    
+                </form:form>
+
+
+
+
 
 
     <c:if test="${!empty hastalar}">
@@ -55,7 +74,7 @@
     <td><c:out value="${randevu.randevu_tarihi}" /></td>
      <td><c:out value="${randevu.randevu_saati}" /></td>
 
-    <td><a href="book/delete?bookid=${book.id}&authorid=${author.id}">Detay</a></td>
+    <td><a href="book/delete?dosya_no=${hasta.dosya_no}&randevu_no=${randevu.randevu_no}">Detay</a></td>
     
    </tr>
    </c:forEach>
@@ -68,6 +87,35 @@
     </c:if>
 
           
+          
+          
+          
+          
+        <c:if test="${!empty TariheGoreRandevu}">
+        <table class="table table-bordered">
+
+	            <tr>
+	                <th>Randevu Tarihi</th>
+	                <th>Randevu Saati</th>
+	                <
+	              
+	            </tr>
+            <c:forEach items="${TariheGoreRandevu}" var="tarih" >
+           
+                <tr >
+             
+                    <td id="Name" style="width: 378px" >${tarih[2]}</td>
+                    <td id="Surname" style="width: 378px">${tarih[1]}</td>
+                    
+                    <td><a href="../randevu/randevudetay?id=${tarih[0]}">Detay</a></td>
+                    
+                </tr>
+			</c:forEach>
+            <tr>
+            </tr>
+        </table>
+        </c:if>
+ 
             
 </body>
 </html>

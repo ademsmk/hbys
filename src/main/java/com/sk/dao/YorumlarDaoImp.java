@@ -51,9 +51,9 @@ public class YorumlarDaoImp implements YorumlarDao {
 	}
 
 	@Override
-	public List<Yorumlar> getYorumlarList(String randevu_no) {
+	public List<Yorumlar> getYorumlarList(String randevu_no, String bilgigirisi_id) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Yorumlar as y where y.randevu.randevu_no ="+randevu_no);
+		Query query = session.createQuery("from Yorumlar as y where y.randevu.randevu_no ="+randevu_no+"and y.bilgigirisi.id="+bilgigirisi_id);
 		List list = query.list();
 		return list;
 	}

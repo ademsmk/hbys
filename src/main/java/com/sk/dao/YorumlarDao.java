@@ -10,6 +10,6 @@ public interface YorumlarDao {
 	public void deleteYorum(String yorum_id);
 	public void editYorum(Yorumlar Yorumlar);
 	public void addYorum(Yorumlar yorumlar);
-	public List<Yorumlar> getYorumlarList(String randevu_no);
+	public List<Yorumlar> getYorumlarList(String randevu_no,String bilgigirisi_id);
 
 }

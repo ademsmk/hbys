@@ -47,6 +47,20 @@
        
     </c:if>
     
+    
+    
+    
+	   		
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
  
    <c:if test="${!empty icerik}">
    
@@ -60,10 +74,15 @@
   
    <tr>
 <%--     <td style="width:600px"><a href="hastaliktipidetay?hastaliktipiid=${hastalik_tipi.id}&randevu_no=${RandevuDetay.randevu_no}&icerik=${icerik.id}">${bilgigirisi.bilgi_giris_adi}</a></td> --%>
-<%--     <td style="width:600px"><a href="yorumeklemesayfasi?hastaliktipiid=${hastaliktipi_id}&randevu_no=${RandevuDetay.randevu_no}&icerik=${icerik.id}&bilgi_id=${bilgigirisi.id}">${bilgigirisi.bilgi_giris_adi}</a></td> --%>
-     	<td style="width:600px">${bilgigirisi.bilgi_giris_adi}</td>
+    <td style="width:600px"><a href="yorumeklemesayfasi?hastaliktipiid=${hastaliktipi_id}&randevu_no=${RandevuDetay.randevu_no}&icerik=${icerik.id}&bilgi_id=${bilgigirisi.id}">${bilgigirisi.bilgi_giris_adi}</a></td>
+<%--      	<td style="width:600px">${bilgigirisi.bilgi_giris_adi}</td> --%>
 <%--     --%>
+
+
+	
+
    </tr>
+ 	
  	
 
    </c:forEach>
@@ -74,7 +93,7 @@
             </tr>
         </table>
     </c:if>
-    
+   
 
           
             

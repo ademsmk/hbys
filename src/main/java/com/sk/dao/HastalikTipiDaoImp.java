@@ -41,7 +41,7 @@ public class HastalikTipiDaoImp implements HastalikTipiDao {
 	public void addHastalikTipi(String randevu_no, HastalikTipi hastaliktipi) {
 		 Session session = sessionFactory.getCurrentSession();
 		 session.save(hastaliktipi);
-		 Randevu existingRandevu = (Randevu) session.get(Randevu.class, randevu_no);
+		 Randevu existingRandevu = (Randevu) session.get(Randevu.class, new Integer(randevu_no));
 		 existingRandevu.getHastalik_tipi().add(hastaliktipi);
 		 session.save(existingRandevu);
 	}

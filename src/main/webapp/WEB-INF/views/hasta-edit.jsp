@@ -101,7 +101,7 @@ $(document).ready(function(){
    <div class="col-lg-6 col-md-6 col-sm-6">
    <br>		<div class="col-lg-12 col-md-12 col-sm-12"><div class="form-group"><form:input   class="form-control" id="add-name" type="hidden" placeholder="Adı Soyadı" path="dosya_no" /></div></div>
 			<div class="form-group"><form:input style="margin-left:15px; margin-top:5px;" class="form-control col-lg-12 col-md-12 col-sm-12" id="add-email" type="text" placeholder="Doğum Yeri" path="dogum_yeri"></form:input></div><br/>
-	   		<div class="form-group"><form:input  style="margin-left:15px; margin-top:5px;" class="form-control col-lg-12 col-md-12 col-sm-12"  id="add-email" type="text" placeholder="Doğum Tarihi" path="dogum_tarihi"></form:input></div><br/>
+	   		<div class="form-group"><form:input  style="margin-left:15px; margin-top:5px;" class="form-control col-lg-12 col-md-12 col-sm-12"  id="add-email" type="date" placeholder="Doğum Tarihi" path="dogum_tarihi"></form:input></div><br/>
 	  		<div class="form-group"><form:input style="margin-left:15px; margin-top:5px;" class="form-control col-lg-12 col-md-12 col-sm-12"  id="add-number" type="text" placeholder="Baba Adı" path="baba_adi"></form:input></div><br/>
 	    	<div class="form-group"><form:input style="margin-left:15px; margin-top:5px; margin-bot:5px;" class="form-control col-lg-12 col-md-12 col-sm-12"  id="add-number" type="text" placeholder="Anne Adı" path="anne_adi"></form:input></div><br/>
 	    	<div class="form-group"><form:input style="margin-left:15px; margin-top:5px; margin-bot:5px;" class="form-control col-lg-12 col-md-12 col-sm-12"  id="add-number" type="text" placeholder="Adres" path="adres"></form:input></div>	<br/>

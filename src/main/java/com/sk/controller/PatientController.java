@@ -57,9 +57,7 @@ public class PatientController {
 		 
 		 @RequestMapping(value = "/search", method = RequestMethod.POST)
 		    public String deneme(@ModelAttribute("patientForm") Patient patient){
-			 	ModelAndView model = new ModelAndView("hastalar");
 			  	String id = Integer.toString(patient.getDosya_no());
-		        model.addObject("searchForm", patientService.getPatient(id));
 		        return "redirect:../patient/hastadetay?id="+id;
 		 }
 		 

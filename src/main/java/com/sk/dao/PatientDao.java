@@ -14,4 +14,6 @@ public interface PatientDao {
 	    public Patient getPatient(String id);
 	    public List<Sehir> getSehirList();
 	   
+	    
+	   
 }

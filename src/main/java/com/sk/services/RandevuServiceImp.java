@@ -58,4 +58,17 @@ public class RandevuServiceImp implements RandevuService {
 		return randevuDao.getHastalikTipi();
 	}
 
+	@Override
+	public List<Randevu> getRandevuListTarih(String randevu_tarihi) {
+		// TODO Auto-generated method stub
+		return randevuDao.getRandevuListTarih(randevu_tarihi);
+	}
+
+
+
+
+
+
+
+
 }

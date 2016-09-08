@@ -44,10 +44,36 @@
                     	
 					
   						<div class="form-group"><form:input class="form-control" id="book-id" type="hidden" placeholder="id" value="${dosya_no}" path="randevu_no"></form:input></div>
-	                    <div class="form-group"><form:input class="form-control" id="add-bookName" type="text" placeholder="Randevu Tarihi" path="randevu_tarihi" /></div>     
-	                    <div class="form-group"><form:input class="form-control" id="add-pageNumber" type="text"  placeholder="Randevu Saati" path="randevu_saati"></form:input></div>
+	                    <div class="form-group"><form:input class="form-control" id="add-bookName" type="date" placeholder="Randevu Tarihi" path="randevu_tarihi" /></div>     
+<%-- 	                    <div class="form-group"><form:input class="form-control" id="add-pageNumber" type="text"  placeholder="Randevu Saati" path="randevu_saati"></form:input></div> --%>
+
+<div class="form-group"><form:select path="randevu_saati" class="form-control">
+  <option value="Null">Randevu Saati</option>
+  <option value="08:00">08:00</option>
+  <option value="08:30">08:30</option>
+  <option value="09:00">09:00</option>
+  <option value="09:30">09:30</option>
+  <option value="10:00">10:00</option>
+  <option value="10:30">10:30</option>
+  <option value="11:00">11:00</option>
+  <option value="11:30">11:30</option>
+  <option value="12:00">12:00</option>
+  <option value="12:30">12:30</option>
+  <option value="13:00">13:00</option>
+  <option value="13:30">13:30</option>
+  <option value="14:00">14:00</option>
+  <option value="14:30">14:30</option>
+  <option value="15:00">15:00</option>
+  <option value="15:30">15:30</option>
+  <option value="16:00">16:00</option>
+  <option value="16:30">16:30</option>
+  <option value="17:00">17:00</option>
+  <option value="17:30">17:30</option>
+  <option value="18:00">18:00</option>
+  <option value="18:30">18:30</option>
+	</form:select></div><br/>
 	                  
-	                    <input class="btn btn-default" type="submit" value="Add"  >
+	                    <input class="btn btn-default" type="submit" value="Randevu Ekle"  >
 <!-- 						<a href="#" class="btn btn-info" role="button">Link Button</a> -->
                     
                 </form:form>

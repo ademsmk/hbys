@@ -37,13 +37,12 @@
 	   			 <form:form action="yorumekle?hastaliktipiid=${hastaliktipiid}&randevu_no=${randevu_no}&icerik=${icerik}&bilgi_id=${bilgi_id}"  method="post" commandName="yorumForm" class="form-inline" >
                     	
 	
-	                    <div class="form-group"><form:input class="form-control" id="add-name" type="hidden" placeholder="Name" path="id" /></div>     
+<%-- 	                    <div class="form-group"><form:input class="form-control" id="add-name" type="hidden" placeholder="Name" path="id" /></div>      --%>
 	                    <div class="form-group"><form:input class="form-control" id="add-surname" type="text"  placeholder="metin" path="yorum"></form:input></div>
-	                     <div class="form-group"><form:input class="form-control" id="add-surname" type="hidden"   value ="${bilgi_id}" path="bilgigirisi.id"></form:input></div>
-	                      <div class="form-group"><form:input class="form-control" id="add-surname" type="hidden"   value ="${randevu_no}" path="randevu.randevu_no"></form:input></div>
+	                    <div class="form-group"><form:input class="form-control" id="add-surname" type="hidden"   value ="${bilgi_id}" path="bilgigirisi.id"></form:input></div>
+	                    <div class="form-group"><form:input class="form-control" id="add-surname" type="hidden"   value ="${randevu_no}" path="randevu.randevu_no"></form:input></div>
 	                    
 
-       
 	                    <input class="btn btn-default" type="submit" value="Add"  >
                     
                 </form:form>

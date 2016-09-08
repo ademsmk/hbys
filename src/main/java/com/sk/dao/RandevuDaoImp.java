@@ -41,19 +41,19 @@ public class RandevuDaoImp implements RandevuDao{
 	public Randevu getRandevu(String id) {
 		
 		Session session = sessionFactory.getCurrentSession();
-		Randevu randevu=(Randevu)session.get(Randevu.class,new Integer(id));
+		Randevu randevu=(Randevu)session.get(Randevu.class, new Integer(id));
 		return randevu;
 	}
 
 	@Override
 	public void deleteRandevu(String id) {
-		Session session=sessionFactory.getCurrentSession();
-		Query query = session.createSQLQuery("DELETE FROM hasta_randevu WHERE randevu_no="+id);
-		query.executeUpdate();
-		Randevu randevu=(Randevu)session.get(Randevu.class,new Integer(id));
-	        if(randevu!=null){ 
-	        session.delete(randevu);
-	        }
+//		Session session= sessionFactory.getCurrentSession();
+//		Query query = session.createSQLQuery("DELETE FROM hasta_randevu WHERE randevu_no="+id);
+//		query.executeUpdate();
+//		Randevu randevu=(Randevu)session.get(Randevu.class,new Integer(id));
+//	        if(randevu!=null){ 
+//	        session.delete(randevu);
+//	        }
 		
 	}
 
@@ -90,6 +90,23 @@ public class RandevuDaoImp implements RandevuDao{
 		Query query = session.createQuery("FROM HastalikTipi as h LEFT JOIN FETCH  h.hastalik_tipi_icerik WHERE h.id="+hastalik_tipi_id);
 		HastalikTipi hastaliktipi = (HastalikTipi) query.uniqueResult();
 		return new ArrayList<HastalikTipiIcerik>(hastaliktipi.getHastalik_tipi_icerik());
+	}
+
+	@Override
+	public Randevu getRandevuTarih(String randevu_tarihi) {
+		Session session = sessionFactory.getCurrentSession();
+		Randevu randevu=(Randevu)session.get(Randevu.class, new String(randevu_tarihi));
+		return randevu;
+	}
+
+	@Override
+	public List<Randevu> getRandevuListTarih(String randevu_tarihi) {
+		Session session = sessionFactory.getCurrentSession();
+		String test = String.format("SELECT * FROM hasta_takip.randevu Where randevu_tarihi='%s'", randevu_tarihi);
+//		List<Randevu> list = session.createQuery("FROM Randevu WHERE randevu_tarihi="+ randevu_tarihi).list();
+		Query query = session.createSQLQuery(test);
+		List<Randevu> list = query.list();
+		return list;
 	}
 
 }

@@ -1,13 +1,16 @@
 package com.sk.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sk.model.Patient;
+import com.sk.model.Randevu;
 import com.sk.model.Sehir;
 
 @Repository
@@ -30,10 +33,21 @@ public class PatientDaoImp implements PatientDao {
 	@Override
 	public void delete(String id) {
 		 Session session=this.sessionFactory.getCurrentSession();
-		 Patient patient=(Patient)session.get(Patient.class,new Integer(id));
-	        if(patient!=null){ 
-	        session.delete(patient);
-	        }
+		 Query query = session.createQuery("FROM Patient as p LEFT JOIN FETCH p.randevular WHERE p.dosya_no="+id);
+		 Patient patient = (Patient) query.uniqueResult();
+		 session.delete(patient);
+		 
+		 List<Randevu> randevular = patient.getRandevular();
+		 
+		 for(Randevu randevu : randevular){
+			 
+			 session.delete(randevu);
+		 }
+//		 
+//		 Patient patient=(Patient)session.get(Patient.class,new Integer(id));
+//	        if(patient!=null){ 
+//	        session.delete(patient);
+//	        }
 		
 	}
 
@@ -70,6 +84,9 @@ public class PatientDaoImp implements PatientDao {
         List<Sehir> list=session.createQuery("from Sehir").list();
         return list;
 	}
+
+
+
 
 
 }

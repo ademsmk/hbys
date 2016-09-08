@@ -81,10 +81,34 @@ public class RandevuController {
     
      model.addAttribute("hastalar", patientDTO);
      
+     model.addAttribute("randevuForm", new Randevu());
+     
  
      
   return "randevu";
  }
+	
+//	 @RequestMapping(value = "/search", method = RequestMethod.POST)
+//	    public String deneme(@ModelAttribute("randevuForm") Randevu randevu){
+//		 	ModelAndView model = new ModelAndView("randevu");
+//		 	
+//		  	String randevu_tarihi = (String) randevu.getRandevu_tarihi();
+//		  	model.addObject("TariheGoreRandevu", randevuService.getRandevuListTarih(randevu_tarihi));
+//		  	
+////	        model.addObject("searchForm", patientService.getPatient(id));
+//	        return "redirect:../randevu";
+//	 }
+	
+	 @RequestMapping(value = "/search")
+	    public ModelAndView HastaDetay(@ModelAttribute("randevuForm") Randevu randevu){
+		  	ModelAndView model = new ModelAndView("randevu");
+		  	model.addObject("randevuForm", new Randevu());
+		  	String randevu_tarihi = randevu.getRandevu_tarihi();
+		  	model.addObject("TariheGoreRandevu", randevuService.getRandevuListTarih(randevu_tarihi));
+	        
+
+	        return model;
+	    }
 	
 	@RequestMapping(method = RequestMethod.POST)
     public String AddAuthor(@RequestParam("randevu_no") Integer dosya_no,@ModelAttribute("randevuForm") Randevu randevu){
@@ -133,6 +157,9 @@ public class RandevuController {
 	    public ModelAndView icerik(@RequestParam("randevu_no") String randevu_no, @RequestParam("hastaliktipiid") String hastalik_tipi_id, @RequestParam("icerik") String icerik_id){
 		  
 		 	ModelAndView model = new ModelAndView("icerik-detay");
+		 	
+		 	
+		 	
 		 	HastalikTipiIcerik icerik = hastaliktipiicerikService.getHastalikTipiIcerik(icerik_id);
 		 	List<HastalikTipiIcerikDTO> icerikDTO = new ArrayList<HastalikTipiIcerikDTO>();
 		 	
@@ -142,6 +169,11 @@ public class RandevuController {
 		 	dto.setHastalik_icerik_adi(icerik.getHastalik_icerik_adi());
 		 	dto.setBilgigirisi(hastaliktipiicerikService.getBilgiGirisi(icerik.getId()));
 		 	icerikDTO.add(dto);
+		 	
+		 	
+		 	
+		 	Yorumlar yorumlar = new Yorumlar();
+			model.addObject("yorumForm", yorumlar);
 		 	
 		 	model.addObject("icerik", icerikDTO);
 		 	model.addObject("hastaliktipi_id", hastalik_tipi_id);
@@ -155,8 +187,9 @@ public class RandevuController {
 	    public ModelAndView YorumEkle(@RequestParam("randevu_no") String randevu_no, 
 	    		@RequestParam("hastaliktipiid") String hastalik_tipi_id, @RequestParam("icerik") String icerik_id, @RequestParam("bilgi_id") String bilgi_id ){
 			
-			
 			ModelAndView model = new ModelAndView("yorum-ekle-sayfasi");
+			
+			
 			
 			Yorumlar yorumlar = new Yorumlar();
 			model.addObject("yorumForm", yorumlar);
@@ -164,12 +197,7 @@ public class RandevuController {
 			model.addObject("bilgi_id", bilgi_id);
 			model.addObject("hastaliktipiid", hastalik_tipi_id);
 			model.addObject("randevu_no", randevu_no);
-			model.addObject("yorumList", yorumlarService.getYorumlarList(randevu_no));
-			model.addObject("getYorum", yorumlarService.getYorumlar(bilgi_id));
-			
-			
-			
-			
+			model.addObject("yorumList", yorumlarService.getYorumlarList(randevu_no, bilgi_id));
 			
 		return model;
 			
@@ -181,15 +209,17 @@ public class RandevuController {
 	    public String AddSummary(@ModelAttribute("yorumForm") Yorumlar yorumlar,@RequestParam("randevu_no") String randevu_no, 
 	    		@RequestParam("hastaliktipiid") String hastalik_tipi_id, @RequestParam("icerik") String icerik_id, @RequestParam("bilgi_id") String bilgi_id  ){
 			
-			
 			yorumlar.setBilgigirisi(hastaliktipiicerikService.getBilgiGirisi(bilgi_id));
 			yorumlar.setRandevu(randevuService.getRandevu(randevu_no));
 			hastaliktipiicerikService.YorumEkle(yorumlar);
 			HastalikTipi hastaliktipi = hastaliktipiService.getHastalikTipi(hastalik_tipi_id);
 			hastaliktipiService.addHastalikTipi(randevu_no, hastaliktipi);
 			
+			
 	        return "redirect:../randevu/yorumeklemesayfasi?hastaliktipiid="+hastalik_tipi_id+"&randevu_no="+randevu_no+"&icerik="+icerik_id+"&bilgi_id="+bilgi_id;
 	    }
+	 
+	 
 
 	
 	

@@ -37,9 +37,9 @@ public class YorumlarServiceImp implements YorumlarService{
 	}
 
 	@Override
-	public List<Yorumlar> getYorumlarList(String randevu_no) {
+	public List<Yorumlar> getYorumlarList(String randevu_no, String bilgigirisi_id) {
 		// TODO Auto-generated method stub
-		return yorumlarDao.getYorumlarList(randevu_no);
+		return yorumlarDao.getYorumlarList(randevu_no,bilgigirisi_id);
 	}
 
 	
