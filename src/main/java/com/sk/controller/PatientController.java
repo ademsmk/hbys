@@ -46,11 +46,46 @@ public class PatientController {
 			return "hasta-kayit";
 		}
 		
-		@RequestMapping(value = "/kayitlihastalar",method = RequestMethod.GET)
-		public String Hastalar(Map<String,Object> model) {
-	      
-		
-	        model.put("HastaListesi", patientService.getPatientList());
+		@RequestMapping(value = "/kayitlihastalar", method = RequestMethod.GET)
+		public String Hastalar(Map<String,Object> model, @RequestParam("page_id") int page ) {
+			
+			int recordsPerPage  = 5;
+//				if(page == 1){
+//					List<Patient> list1 = patientService.getPatientList();
+//					int noOfRecords  = list1.size();
+//					int noOfPages  = (int) Math.ceil(noOfRecords*1.0 / recordsPerPage);
+//					List<Patient> list = patientService.getPatientList((page-1)*recordsPerPage, recordsPerPage);
+//					
+//					model.put("HastaListesi", list);
+//					model.put("noOfPages", noOfPages);
+//					model.put("currentPage", page);
+//				}
+//				else{
+//					List<Patient> list1 = patientService.getPatientList();
+//					int noOfRecords  = list1.size();
+//					int noOfPages  = (int) Math.ceil(noOfRecords*1.0 / recordsPerPage);
+//					List<Patient> list = patientService.getPatientList((page-1)*recordsPerPage, recordsPerPage);
+//					
+//					model.put("HastaListesi", list);
+//					model.put("noOfPages", noOfPages);
+//					model.put("currentPage", page);
+//				}
+    
+//			List<Patient> list = patientService.getPatientList((page_id-1), total);
+//		
+//			
+//			model.put("HastaListesi", list);
+//			model.put("page_id", page_id);
+			
+			List<Patient> list1 = patientService.getPatientList();
+			int noOfRecords  = list1.size();
+			int noOfPages  = (int) Math.ceil(noOfRecords*1.0 / recordsPerPage);
+			List<Patient> list = patientService.getPatientList((page-1)*recordsPerPage, recordsPerPage);
+			
+			model.put("HastaListesi", list);
+			model.put("noOfPages", noOfPages);
+			model.put("currentPage", page);
+			
 	        model.put("patientForm", new Patient());
 			return "hastalar";
 		}
@@ -78,7 +113,7 @@ public class PatientController {
 		@RequestMapping(value = "/delete",method = RequestMethod.GET)
 	    public String deleteUser(@RequestParam String id){
 			patientService.deletePatient(id);
-	        return "redirect:../patient/kayitlihastalar";
+	        return "redirect:../patient/kayitlihastalar?page_id=1";
 	    }
 		
 		 @RequestMapping(value = "/edit")

@@ -96,21 +96,21 @@ $(document).ready(function(){
 	            </tr>
             <c:forEach items="${HastaListesi}" var="hastalar" >
            
-                <tr id="${hastalar.dosya_no}">
+                <tr id="${hastalar[0]}">
              
-                    <td id="Name" style="width: 150px" >${hastalar.dosya_no}</td>
-                    <td id="Surname" style="width: 400px">${hastalar.adisoyadi}</td>
-                    <td id="Surname" style="width: 250px">${hastalar.tckimlik_no}</td>
+                    <td id="Name" style="width: 150px" >${hastalar[0]}</td>
+                    <td id="Surname" style="width: 400px">${hastalar[1]}</td>
+                    <td id="Surname" style="width: 250px">${hastalar[10]}</td>
 					 <td style="width: 118px">
-					<a href="hastadetay?id=${hastalar.dosya_no}">Detay</a>
+					<a href="hastadetay?id=${hastalar[0]}">Detay</a>
 					</td>
 					
 					 <td style="width: 118px">
-					<a href="randevular?id=${hastalar.dosya_no}">Randevular</a>
+					<a href="randevular?id=${hastalar[0]}">Randevular</a>
 					</td>
 					
 					<td style="width: 118px">
-						<a href="#" name=${author.id} class="delete" onclick="return yes_js_login(${hastalar.dosya_no});" >Delete</a> 
+						<a href="#" name=${author.id} class="delete" onclick="return yes_js_login(${hastalar[0]});" >Delete</a> 
 					</td>
                 </tr>
 			</c:forEach>
@@ -122,7 +122,40 @@ $(document).ready(function(){
     
     
 </div>
+   </div>
+   <br>
    
+<%--   <c:if test="${currentPage != 1}"> --%>
+<%--         <a href="../patient/kayitlihastalar?page_id=${currentPage - 1}">Previous</a> --%>
+<%--     </c:if> --%>
+ 
+  
+    <table border="1" cellpadding="5" cellspacing="5">
+        <tr>
+        
+        <td><c:if test="${currentPage != 1}">
+        <a href="../patient/kayitlihastalar?page_id=${currentPage - 1}">Previous</a>
+    </c:if></td>
+            <c:forEach begin="1" end="${noOfPages}" var="i">
+                <c:choose>
+                    <c:when test="${currentPage eq i}">
+                        <td style="padding: 10px" >${i}</td>
+                    </c:when>
+                    <c:otherwise>
+                        <td style="padding: 10px" ><a href="../patient/kayitlihastalar?page_id=${i}">${i}</a></td>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <td> <c:if test="${currentPage lt noOfPages}">
+        <a href="../patient/kayitlihastalar?page_id=${currentPage + 1}">Next</a>
+    </c:if></td>
+        </tr>
+    </table>
+     
+ 	
+<%--     <c:if test="${currentPage lt noOfPages}"> --%>
+<%--         <a href="../patient/kayitlihastalar?page_id=${currentPage + 1}">Next</a> --%>
+<%--     </c:if> --%>
 
           
             

@@ -41,7 +41,8 @@
            
           	  <tr class="success"><td style="width: 216px;">Randevu Tarihi</td><td style="padding-left: 50px;">: ${RandevuDetay.randevu_tarihi}</td></tr>
               <tr class="success"><td style="width: 216px;">Randevu Saati</td><td style="padding-left: 50px;">: ${RandevuDetay.randevu_saati}</td></tr>
-              
+               <tr class="success"><td style="width: 216px;">Dosya Numarası</td><td style="padding-left: 50px;">: ${dosya_no}</td></tr>
+               <tr class="success"><td style="width: 216px;">Hasta Adı Soyadı</td><td style="padding-left: 50px;">: ${hasta_adi}</td></tr>
               </table>      
                
        
@@ -49,7 +50,8 @@
     
     
     
-    
+    <div style="text-align:left"><a href="../randevu/randevudetay?id=${RandevuDetay.randevu_no}&dosya_no=${dosya_no}">Muayene Bilgisi</a>
+     >> <a href="hastaliktipidetay?hastaliktipiid=${hastaliktipiid}&randevu_no=${RandevuDetay.randevu_no}&dosya_no=${dosya_no}">${hastalik_tipi_adi}</a> >> ${icerik_adi}</div>
 	   		
     
     
@@ -74,7 +76,7 @@
   
    <tr>
 <%--     <td style="width:600px"><a href="hastaliktipidetay?hastaliktipiid=${hastalik_tipi.id}&randevu_no=${RandevuDetay.randevu_no}&icerik=${icerik.id}">${bilgigirisi.bilgi_giris_adi}</a></td> --%>
-    <td style="width:600px"><a href="yorumeklemesayfasi?hastaliktipiid=${hastaliktipi_id}&randevu_no=${RandevuDetay.randevu_no}&icerik=${icerik.id}&bilgi_id=${bilgigirisi.id}">${bilgigirisi.bilgi_giris_adi}</a></td>
+    <td style="width:600px"><a href="yorumeklemesayfasi?hastaliktipiid=${hastaliktipi_id}&randevu_no=${RandevuDetay.randevu_no}&icerik=${icerik.id}&bilgi_id=${bilgigirisi.id}&dosya_no=${dosya_no}">${bilgigirisi.bilgi_giris_adi}</a></td>
 <%--      	<td style="width:600px">${bilgigirisi.bilgi_giris_adi}</td> --%>
 <%--     --%>
 

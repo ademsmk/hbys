@@ -63,7 +63,7 @@ public class PatientDaoImp implements PatientDao {
 	@Override
 	public Patient getPatient(String id) {
 		
-		Session session=this.sessionFactory.getCurrentSession();
+		 Session session=this.sessionFactory.getCurrentSession();
 		 Patient patient=(Patient)session.get(Patient.class,new Integer(id));
 	     return patient;
 		
@@ -84,6 +84,15 @@ public class PatientDaoImp implements PatientDao {
         List<Sehir> list=session.createQuery("from Sehir").list();
         return list;
 	}
+
+	@Override
+	public List<Patient> getPatientList(int page_baslangic_id, int total) {
+		Session session = sessionFactory.getCurrentSession();
+		List<Patient> list = session.createSQLQuery("SELECT * FROM hasta limit "+page_baslangic_id+","+total).list();
+		return list;
+	}
+
+
 
 
 

@@ -33,6 +33,10 @@
 <div class="container" style="border:1px solid#000; padding-bottom: 20px;">
 <div  align = center style="padding-top: 20px;">
 
+
+
+
+
                 <c:if test="${not empty RandevuDetay}">
        
 
@@ -42,13 +46,14 @@
           	  <tr class="success"><td style="width: 216px;">Randevu Tarihi</td><td style="padding-left: 50px;">: ${RandevuDetay.randevu_tarihi}</td></tr>
               <tr class="success"><td style="width: 216px;">Randevu Saati</td><td style="padding-left: 50px;">: ${RandevuDetay.randevu_saati}</td></tr>
               <tr class="success"><td style="width: 216px;">Dosya Numarası</td><td style="padding-left: 50px;">: ${dosya_no}</td></tr>
-              
+               <tr class="success"><td style="width: 216px;">Hasta Adı Soyadı</td><td style="padding-left: 50px;">: ${hasta_adi}</td></tr>
               </table>      
                
        
     </c:if>
     
-    
+    <div style="text-align:left"><a href="../randevu/randevudetay?id=${RandevuDetay.randevu_no}&dosya_no=${dosya_no}">Muayene Bilgisi</a>
+     >> ${hastalik_tipi_adi}</div>
 
    <c:if test="${!empty hastaliktipi}">
    
@@ -61,7 +66,7 @@
    
   
    <tr>
-    <td style="width:600px"><a href="icerikdetay?hastaliktipiid=${hastaliktipi.id}&randevu_no=${RandevuDetay.randevu_no}&icerik=${icerik.id}">${icerik.hastalik_icerik_adi}</a></td>
+    <td style="width:600px"><a href="icerikdetay?dosya_no=${dosya_no}&hastaliktipiid=${hastaliktipi.id}&randevu_no=${RandevuDetay.randevu_no}&icerik=${icerik.id}">${icerik.hastalik_icerik_adi}</a></td>
     <td style="width:220px"><c:out value="${hastaliktipi.hastalik_tipi_adi}" /></td>
    
    

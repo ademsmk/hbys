@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,8 +42,15 @@ public class Randevu {
 	private List<HastalikTipi> hastalik_tipi;
 	
 
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private Patient patient;
 	
-	
+	public Patient getPatient() {
+		return patient;
+	}
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 	public List<HastalikTipi> getHastalik_tipi() {
 		return hastalik_tipi;
 	}

@@ -74,7 +74,7 @@
     <td><c:out value="${randevu.randevu_tarihi}" /></td>
      <td><c:out value="${randevu.randevu_saati}" /></td>
 
-    <td><a href="book/delete?dosya_no=${hasta.dosya_no}&randevu_no=${randevu.randevu_no}">Detay</a></td>
+    <td><a href="randevu/randevudetay?id=${randevu.randevu_no}&dosya_no=${hasta.dosya_no}">Detay</a></td>
     
    </tr>
    </c:forEach>
@@ -97,7 +97,7 @@
 	            <tr>
 	                <th>Randevu Tarihi</th>
 	                <th>Randevu Saati</th>
-	                <
+	                
 	              
 	            </tr>
             <c:forEach items="${TariheGoreRandevu}" var="tarih" >
@@ -107,8 +107,8 @@
                     <td id="Name" style="width: 378px" >${tarih[2]}</td>
                     <td id="Surname" style="width: 378px">${tarih[1]}</td>
                     
-                    <td><a href="../randevu/randevudetay?id=${tarih[0]}">Detay</a></td>
-                    
+                    <td><a href="../randevu/randevudetay?id=${tarih[0]}&dosya_no=${tarih[3]}">Detay</a></td>
+<%--                     <td><a href="../randevu/search?id=${tarih[0]}&dosya_no=${tarih[3]}">Detay</a></td> --%>
                 </tr>
 			</c:forEach>
             <tr>

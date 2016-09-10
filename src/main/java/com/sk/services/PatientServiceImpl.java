@@ -57,5 +57,13 @@ public class PatientServiceImpl implements PatientService {
 		return patientDao.getSehirList();
 	}
 
+	@Override
+	public List<Patient> getPatientList(int page_baslangic_id, int total) {
+		// TODO Auto-generated method stub
+		return patientDao.getPatientList(page_baslangic_id, total);
+	}
+
+
+
 
 }

@@ -38,7 +38,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/HastaTakip/patient">Hasta Ekle</a></li>
-        <li><a href="/HastaTakip/patient/kayitlihastalar">Hasta Listesi</a></li>
+        <li><a href="/HastaTakip/patient/kayitlihastalar?page_id=1">Hasta Listesi</a></li>
          <li><a href="/HastaTakip/randevu">Randevular</a></li>
       </ul>
     </div>

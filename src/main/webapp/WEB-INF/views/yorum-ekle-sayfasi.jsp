@@ -34,7 +34,21 @@
 <div  align = center style="padding-top: 20px;">
 
 
-	   			 <form:form action="yorumekle?hastaliktipiid=${hastaliktipiid}&randevu_no=${randevu_no}&icerik=${icerik}&bilgi_id=${bilgi_id}"  method="post" commandName="yorumForm" class="form-inline" >
+<table class="table">
+           
+          	  <tr class="success"><td style="width: 216px;">Randevu Tarihi</td><td style="padding-left: 50px;">: ${RandevuDetay.randevu_tarihi}</td></tr>
+              <tr class="success"><td style="width: 216px;">Randevu Saati</td><td style="padding-left: 50px;">: ${RandevuDetay.randevu_saati}</td></tr>
+              <tr class="success"><td style="width: 216px;">Dosya Numarası</td><td style="padding-left: 50px;">: ${dosya_no}</td></tr>
+              <tr class="success"><td style="width: 216px;">Hasta Adı Soyadı</td><td style="padding-left: 50px;">: ${hasta_adi}</td></tr>
+              
+              </table>      
+              
+      <div style="text-align:left"><a href="../randevu/randevudetay?id=${RandevuDetay.randevu_no}&dosya_no=${dosya_no}">Muayene Bilgisi</a>
+       >> <a href="hastaliktipidetay?hastaliktipiid=${hastaliktipiid}&randevu_no=${RandevuDetay.randevu_no}&dosya_no=${dosya_no}">${hastalik_tipi_adi}</a>
+        >> <a href="icerikdetay?hastaliktipiid=${hastaliktipiid}&randevu_no=${RandevuDetay.randevu_no}&dosya_no=${dosya_no}&icerik=${icerik_id}">${icerik_adi}</a>
+        >> ${bilgigirisi_adi} </div>
+
+	   			 <form:form action="yorumekle?hastaliktipiid=${hastaliktipiid}&randevu_no=${randevu_no}&icerik=${icerik}&bilgi_id=${bilgi_id}&dosya_no=${dosya_no}"  method="post" commandName="yorumForm" class="form-inline" >
                     	
 	
 <%-- 	                    <div class="form-group"><form:input class="form-control" id="add-name" type="hidden" placeholder="Name" path="id" /></div>      --%>
@@ -52,25 +66,13 @@
     <c:if test="${!empty yorumList}">
         <table class="table table-bordered">
 
-	            <tr>
-	                <th>Summary</th>
-	                <th>Book Name</th>
-	            </tr>
+	        
             <c:forEach items="${yorumList}" var="yorum" >
                 <tr id="${yorum.id}">
              
                     <td id="Name" style="width: 378px" >${yorum.yorum}</td>
                     
                     
-					
-					
-					 <td style="width: 118px">
-					<a href="author/edit?id=${summary.book.id}">Edit</a>
-					</td>
-					
-					<td style="width: 118px">
-						<a href="#" name="{summary.id}" class="delete" onclick="return yes_js_login(${summary.id});" >Delete</a> 
-					</td>
                 </tr>
 
             </c:forEach>

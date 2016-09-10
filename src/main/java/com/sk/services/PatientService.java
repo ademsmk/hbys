@@ -16,6 +16,8 @@ public interface PatientService {
     public void updatePatient(Patient patient);
     public Patient getPatient(String id);
     public List<Sehir> getSehirList();
+    public List<Patient> getPatientList(int page_baslangic_id, int total);
+
     
 
 }

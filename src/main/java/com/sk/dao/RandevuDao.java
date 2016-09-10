@@ -18,5 +18,6 @@ public interface RandevuDao {
 	public void addRandevu(int dosya_no, Randevu randevu);
 	public List<HastalikTipi> getHastalikTipi();
 	public List<HastalikTipiIcerik> getHastalikTipiIcerik(int hastalik_tipi_id);
+	
 
 }
